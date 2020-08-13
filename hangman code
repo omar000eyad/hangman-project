@@ -1,6 +1,5 @@
 import random
-h = 0
-i = 0
+number_of_attempts = 0 
 
 print("Welcome !")
     
@@ -17,22 +16,22 @@ def difficulty():
     while True:
         choice = input("> ")
         if choice == "Easy":
-            number_of_attempts = number_of_clues + 5
-            return number_of_attempts
+            total_number_of_attempts = number_of_clues + 5
+            return total_number_of_attempts
             break
         elif choice == "Normal":
-            number_of_attempts = number_of_clues + 2
-            return number_of_attempts
+            total_number_of_attempts = number_of_clues + 2
+            return total_number_of_attempts
             break
         elif choice == "Hard":
-            number_of_attempts = number_of_clues
-            return number_of_attempts
+            total_number_of_attempts = number_of_clues
+            return total_number_of_attempts
             break
         else:
             print("Choose a valid difficulty please")
 
 
-number_of_attempts = difficulty()
+total_number_of_attempts = difficulty()
 layout = "_" * num_of_letters
 for i in range(0 , number_of_clues):
     the_chosen_letter_number = random.randint(0 , num_of_letters - 1) # -1 so it will be always in index
@@ -46,7 +45,7 @@ while True:
     user_letter_number = int(input("> ")) - 1 #because list starts at 0
     print("choose the letter you think right")
     user_letter = input("> ")
-    if h == number_of_attempts - 1:     
+    if number_of_attempts == total_number_of_attempts - 1:     
         print("haha you failed , try again !")
         break
     if user_letter == the_chosen_word[user_letter_number]:
@@ -57,6 +56,6 @@ while True:
             print("congratulations , you won !")
             break
     else :
-        h += 1
+        number_of_attempts += 1
     
         

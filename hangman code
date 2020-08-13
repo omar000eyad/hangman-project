@@ -1,0 +1,62 @@
+import random
+h = 0
+i = 0
+
+print("Welcome !")
+    
+words = ("textbook" , "chemistry" , "physics" , "biology" , "mathematics" , "Advanced" , "movie" , "fun" , "violin" , "python" , "difficulty" , "pride" , "hope" , "teacher" , "laptop" , "daily" , "annoyance")
+the_chosen_word = random.choice(words)
+num_of_letters = len(the_chosen_word)
+number_of_clues = num_of_letters / 2
+number_of_clues = round(number_of_clues)
+
+
+def difficulty():
+    print("\tChoose your difficulty")
+    print("\tEasy , Normal or Hard")
+    while True:
+        choice = input("> ")
+        if choice == "Easy":
+            number_of_attempts = number_of_clues + 5
+            return number_of_attempts
+            break
+        elif choice == "Normal":
+            number_of_attempts = number_of_clues + 2
+            return number_of_attempts
+            break
+        elif choice == "Hard":
+            number_of_attempts = number_of_clues
+            return number_of_attempts
+            break
+        else:
+            print("Choose a valid difficulty please")
+
+
+number_of_attempts = difficulty()
+layout = "_" * num_of_letters
+for i in range(0 , number_of_clues):
+    the_chosen_letter_number = random.randint(0 , num_of_letters - 1) # -1 so it will be always in index
+    layout = list(layout) #It has to be changed to list because it is mutable
+    the_chosen_letter = the_chosen_word[the_chosen_letter_number] #it is here so it always keeps on updating the letters
+    layout[the_chosen_letter_number] = the_chosen_letter
+print(layout)
+
+while True:
+    print("choose a letter number")
+    user_letter_number = int(input("> ")) - 1 #because list starts at 0
+    print("choose the letter you think right")
+    user_letter = input("> ")
+    if h == number_of_attempts - 1:     
+        print("haha you failed , try again !")
+        break
+    if user_letter == the_chosen_word[user_letter_number]:
+        print("Correct !")   #2 ifs instead of elif and if bevause it is a different condition
+        layout[user_letter_number] = user_letter
+        print(layout)
+        if "_" not in layout:
+            print("congratulations , you won !")
+            break
+    else :
+        h += 1
+    
+        
